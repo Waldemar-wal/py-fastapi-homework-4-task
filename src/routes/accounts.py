@@ -85,9 +85,9 @@ async def register_user(
 
     Args:
         user_data (UserRegistrationRequestSchema): The registration details including email and password.
-        background_tasks: Back ground tasks used to create the new user.
+        background_tasks: Background tasks used to create the new user.
         db (AsyncSession): The asynchronous database session.
-        email_sender (EmailSender): The email sender used to send emails.
+        email_sender (EmailSender): The email sender used to send the activation email.
 
     Returns:
         UserRegistrationResponseSchema: The newly created user's details.
@@ -193,7 +193,7 @@ async def activate_account(
     or if the account is already active, an HTTP 400 error is raised.
 
     Args:
-        background_tasks: Background tasks used to create the back ground task.
+        background_tasks: Background tasks used to send the activation complete email.
         activation_data (UserActivationRequestSchema): Contains the user's email and activation token.
         db (AsyncSession): The asynchronous database session.
         email_sender (EmailSenderInterface): The email sender used to send emails.
@@ -273,9 +273,9 @@ async def request_password_reset_token(
 
     Args:
         data (PasswordResetRequestSchema): The request data containing the user's email.
-        background_tasks: The background tasks used to generate a new token.
+        background_tasks: The background tasks used to send the password reset email.
         db (AsyncSession): The asynchronous database session.
-        email_sender (EmailSenderInterface): The email sender used to generate a new token.
+        email_sender (EmailSenderInterface): The email sender used to send the password reset email.
 
     Returns:
         MessageResponseSchema: A success message indicating that instructions will be sent.
@@ -363,10 +363,10 @@ async def reset_password(
 
     Args:
         data (PasswordResetCompleteRequestSchema): The request data containing the user's email,
-        background_tasks: The background tasks used to create background task.
+        background_tasks: The background tasks used to send the password reset complete email.
          token, and new password.
         db (AsyncSession): The asynchronous database session.
-        email_sender (EmailSenderInterface): The email sender used to send a new token.
+        email_sender (EmailSenderInterface): The email sender used to send the password reset complete email.
 
     Returns:
         MessageResponseSchema: A response message indicating successful password reset.
