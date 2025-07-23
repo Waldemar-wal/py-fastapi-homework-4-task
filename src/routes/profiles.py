@@ -135,4 +135,3 @@ async def create_profile(
         info=new_profile.info,
         avatar=cast(HttpUrl, avatar_url)
     )
-
